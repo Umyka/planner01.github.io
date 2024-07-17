@@ -1,0 +1,21 @@
+#addEventForm {
+    background-color: #2e2b36;
+    padding: 20px;
+    border-top: 1px solid #433f50;
+  }
+  
+  #eventForm input, #eventForm select, #eventForm button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  #eventForm button {
+    background-color: white;
+    color: #131217;
+    cursor: pointer;
+  }
+  
+  #eventForm button:hover {
+    background-color: #f0f0f0;
+  }

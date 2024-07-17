@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Lexend%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>Student Planner</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="relative flex size-full min-h-screen flex-col bg-[#131217] dark group/design-root overflow-x-hidden" style='font-family: Lexend, "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#2e2b36] px-10 py-3">
+          <div class="flex items-center gap-4 text-white">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_6_535)">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
+                    fill="currentColor"
+                  ></path>
+                </g>
+                <defs>
+                  <clipPath id="clip0_6_535"><rect width="48" height="48" fill="white"></rect></clipPath>
+                </defs>
+              </svg>
+            </div>
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Student Planner</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-white text-sm font-medium leading-normal" href="#">Calendar</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Courses</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Study Groups</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Feedback</a>
+            </div>
+            <button
+              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#2e2b36] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+            >
+              <div class="text-white" data-icon="Bell" data-size="20px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                  <path
+                    d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"
+                  ></path>
+                </svg>
+              </div>
+            </button>
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              style='background-image: url("https://cdn.usegalileo.ai/stability/4b30bc9d-200f-40bd-a2a4-5aee138c374e.png");'
+            ></div>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <div class="flex min-w-72 flex-col gap-3">
+                <p class="text-white tracking-light text-[32px] font-bold leading-tight">Today</p>
+                <p id="currentDate" class="text-[#a6a1b5] text-sm font-normal leading-normal">February 21, 2023</p>
+              </div>
+              <div class="flex gap-2">
+                <button id="prevDay" class="bg-[#2e2b36] text-white px-4 py-2 rounded">Previous Day</button>
+                <button id="nextDay" class="bg-[#2e2b36] text-white px-4 py-2 rounded">Next Day</button>
+              </div>
+            </div>
+            <div class="pb-3">
+              <div class="flex border-b border-[#433f50] px-4 gap-8">
+                <a id="filterAll" class="flex flex-col items-center justify-center border-b-[3px] border-b-white text-white pb-[13px] pt-4" href="#">
+                  <p class="text-white text-sm font-bold leading-normal tracking-[0.015em]">All</p>
+                </a>
+                <a id="filterSchedule" class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#a6a1b5] pb-[13px] pt-4" href="#">
+                  <p class="text-[#a6a1b5] text-sm font-bold leading-normal tracking-[0.015em]">Schedule</p>
+                </a>
+                <a id="filterTodos" class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#a6a1b5] pb-[13px] pt-4" href="#">
+                  <p class="text-[#a6a1b5] text-sm font-bold leading-normal tracking-[0.015em]">To-dos</p>
+                </a>
+                <a id="filterDone" class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#a6a1b5] pb-[13px] pt-4" href="#">
+                  <p class="text-[#a6a1b5] text-sm font-bold leading-normal tracking-[0.015em]">Done</p>
+                </a>
+              </div>
+            </div>
+            <div id="eventContainer" class="layout-content-container flex flex-col max-w-[960px] flex-1">
+              <!-- Event content will be dynamically inserted here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="addEventForm" class="fixed bottom-0 left-0 w-full bg-[#2e2b36] p-4">
+      <form id="eventForm" class="flex gap-4">
+        <input type="text" id="eventTitle" placeholder="Event Title" required class="flex-grow p-2 rounded">
+        <input type="time" id="eventTime" required class="p-2 rounded">
+        <select id="eventType" required class="p-2 rounded">
+          <option value="schedule">Schedule</option>
+          <option value="todo">To-do</option>
+        </select>
+        <button type="submit" class="bg-white text-[#131217] p-2 rounded">Add Event</button>
+      </form>
+    </div>
+</body>
+</html>

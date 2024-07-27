@@ -65,9 +65,19 @@ nextDayButton.addEventListener('click', () => {
     displayEvents();
 });
 
+// Function to extract video ID from YouTube URL
+function getYouTubeVideoId(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+}
+
 // Add new event
 function addNewEvent(event) {
-    event.date = currentDate.toDateString(); // Use currentDate
+    event.date = currentDate.toDateString();
+    if (event.youtubeLink) {
+        event.youtubeId = getYouTubeVideoId(event.youtubeLink);
+    }
     events.push(event);
     if (calendar) {
         calendar.addEvent({
@@ -84,14 +94,16 @@ eventForm.addEventListener('submit', (e) => {
     const title = document.getElementById('eventTitle').value;
     const time = document.getElementById('eventTime').value;
     const type = document.getElementById('eventType').value;
+    const youtubeLink = document.getElementById('youtubeLink').value;
     
     const newEvent = {
         id: Date.now().toString(),
-        date: currentDate.toDateString(), // Use currentDate
+        date: currentDate.toDateString(),
         title,
         time,
         type,
-        done: false
+        done: false,
+        youtubeLink
     };
     
     addNewEvent(newEvent);
@@ -106,6 +118,14 @@ function createEventElement(event) {
     eventElement.innerHTML = `
         <h3 class="text-white font-bold">${event.title}</h3>
         <p class="text-[#a6a1b5]">${event.time} - ${event.type}</p>
+        ${event.youtubeId ? `
+            <div class="youtube-preview mt-2">
+                <a href="${event.youtubeLink}" target="_blank" class="flex items-center">
+                    <img src="https://img.youtube.com/vi/${event.youtubeId}/default.jpg" alt="YouTube Thumbnail" class="w-20 h-auto mr-2">
+                    <span class="text-white">Watch Video</span>
+                </a>
+            </div>
+        ` : ''}
         ${event.type === 'todo' ? 
             `<button class="toggle-done bg-white text-[#131217] p-1 rounded mt-2" data-id="${event.id}">
                 ${event.done ? 'Mark as Undone' : 'Mark as Done'}
@@ -218,6 +238,7 @@ function openEditModal(e) {
         document.getElementById('editEventTitle').value = event.title;
         document.getElementById('editEventTime').value = event.time;
         document.getElementById('editEventType').value = event.type;
+        document.getElementById('editYoutubeLink').value = event.youtubeLink || '';
         editModal.classList.remove('hidden');
     }
 }
@@ -236,6 +257,9 @@ editForm.addEventListener('submit', (e) => {
         event.title = document.getElementById('editEventTitle').value;
         event.time = document.getElementById('editEventTime').value;
         event.type = document.getElementById('editEventType').value;
+        event.youtubeLink = document.getElementById('editYoutubeLink').value;
+        event.youtubeId = getYouTubeVideoId(event.youtubeLink);
+        
         displayEvents();
         if (calendar) {
             calendar.getEventById(id).remove();

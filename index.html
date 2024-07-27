@@ -102,13 +102,14 @@
       </div>
     </div>
     <div id="addEventForm" class="fixed bottom-0 left-0 w-full bg-[#2e2b36] p-4">
-      <form id="eventForm" class="flex gap-4">
+      <form id="eventForm" class="flex flex-wrap gap-4">
         <input type="text" id="eventTitle" placeholder="Event Title" required class="flex-grow p-2 rounded">
         <input type="time" id="eventTime" required class="p-2 rounded">
         <select id="eventType" required class="p-2 rounded">
           <option value="schedule">Schedule</option>
           <option value="todo">To-do</option>
         </select>
+        <input type="url" id="youtubeLink" placeholder="YouTube Video Link" class="flex-grow p-2 rounded">
         <button type="submit" class="bg-white text-[#131217] p-2 rounded">Add Event</button>
       </form>
     </div>
@@ -117,22 +118,23 @@
           <div id="calendar"></div>
           <button id="closeCalendar" class="mt-4 bg-white text-[#131217] p-2 rounded">Close</button>
       </div>
-  </div>
-  <div id="editModal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-    <div class="bg-[#2e2b36] p-4 rounded-lg">
-        <h2 class="text-white text-xl font-bold mb-4">Edit Event</h2>
-        <form id="editForm" class="flex flex-col gap-4">
-            <input type="hidden" id="editEventId">
-            <input type="text" id="editEventTitle" placeholder="Event Title" required class="p-2 rounded">
-            <input type="time" id="editEventTime" required class="p-2 rounded">
-            <select id="editEventType" required class="p-2 rounded">
-                <option value="schedule">Schedule</option>
-                <option value="todo">To-do</option>
-            </select>
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded">Save Changes</button>
-        </form>
-        <button id="closeEditModal" class="mt-4 bg-gray-500 text-white p-2 rounded">Cancel</button>
     </div>
-</div>
+    <div id="editModal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+      <div class="bg-[#2e2b36] p-4 rounded-lg">
+          <h2 class="text-white text-xl font-bold mb-4">Edit Event</h2>
+          <form id="editForm" class="flex flex-col gap-4">
+              <input type="hidden" id="editEventId">
+              <input type="text" id="editEventTitle" placeholder="Event Title" required class="p-2 rounded">
+              <input type="time" id="editEventTime" required class="p-2 rounded">
+              <select id="editEventType" required class="p-2 rounded">
+                  <option value="schedule">Schedule</option>
+                  <option value="todo">To-do</option>
+              </select>
+              <input type="url" id="editYoutubeLink" placeholder="YouTube Video Link" class="p-2 rounded">
+              <button type="submit" class="bg-blue-500 text-white p-2 rounded">Save Changes</button>
+          </form>
+          <button id="closeEditModal" class="mt-4 bg-gray-500 text-white p-2 rounded">Cancel</button>
+      </div>
+    </div>
 </body>
 </html>
